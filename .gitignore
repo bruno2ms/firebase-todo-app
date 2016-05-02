@@ -1,0 +1,6 @@
+/node_modules/
+.bower-registry/
+.bower-cache/
+.bower-tmp/
+/www/
+/app/components/
