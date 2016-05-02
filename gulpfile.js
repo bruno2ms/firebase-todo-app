@@ -51,10 +51,11 @@
 
   gulp.task('scripts', function () {
     gulp
-      .src('./app/**/*.js')
+      .src(['./app/**/*.js', '!./app/components/**/*.js'])
       .pipe(plumber(errorHandler))
       .pipe(jshint())
-      .pipe(jshint.reporter('default'))
+      .pipe(jshint.reporter('jshint-stylish'))
+      .pipe(jshint.reporter('fail'))
       .pipe(gulp.dest('./www/'))
       .pipe(browserSync.reload({ stream:true }));
   });
