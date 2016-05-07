@@ -2,18 +2,31 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Oi</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My AngularJS & Firebase TODOAPP</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- bower:css -->
     <!-- endbower -->
     <!-- inject:css -->
     <!-- endinject -->
   </head>
-  <body>
-    Oi
+  <body ng-cloak>
+    <ul class="menu">
+      <li><a href="#/home">home</a></li>
+      <li><a href="#/chat">chat</a></li>
+      <li ng-hide="loggedIn"><a href="#/login">login</a></li>
+      <li ng-show="loggedIn"><a href="#/account">account</a></li>
+    </ul>
+
+    <div ng-view></div>
+
+    <div>AngularFire-seed v<span app-version></span></div>
 
     <!-- bower:js -->
     <!-- endbower -->
+
     <!-- inject:js -->
     <!-- endinject -->
   </body>

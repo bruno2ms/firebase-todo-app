@@ -3,5 +3,4 @@
 .bower-cache/
 .bower-tmp/
 /www/
-/app/components/
-.bower_components/
+bower_components/

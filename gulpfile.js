@@ -10,7 +10,9 @@
   var imagemin = require('gulp-imagemin');
   var cache = require('gulp-cache');
   var inject = require('gulp-inject');
-  var wiredep = require('wiredep').stream;
+  var wiredep = require('wiredep');
+  var clean = require('gulp-clean');
+  var del = require('del');
 
   var errorHandler = {
     errorHandler: function throwError(error) {
@@ -49,9 +51,9 @@
       .pipe(browserSync.reload({ stream:true }));
   });
 
-  gulp.task('scripts', function () {
+  gulp.task('jshint', function () {
     gulp
-      .src(['./app/**/*.js', '!./app/components/**/*.js'])
+      .src(['./app/**/*.js'])
       .pipe(plumber(errorHandler))
       .pipe(jshint())
       .pipe(jshint.reporter('jshint-stylish'))
@@ -60,33 +62,45 @@
       .pipe(browserSync.reload({ stream:true }));
   });
 
-  gulp.task('bower', function () {
+  gulp.task('wire', function () {
+    var stream = require('wiredep').stream;
+    var options = {
+        ignorePath: /\.+(\/.*\/)/,
+        fileTypes: {
+          html: {
+            replace: {
+              js: '<script src="/lib/{{filePath}}"></script>',
+              css: '<link rel="stylesheet" href="/lib/{{filePath}}" />',
+            },
+          },
+        },
+      };
+
+    var wiredepJs = wiredep().js;
+    if (wiredepJs) {
+      gulp
+        .src(wiredep().js)
+        .pipe(gulp.dest('./www/lib/'));
+    }
+
     gulp
       .src('./app/**/*.html')
-      .pipe(wiredep())
-      .pipe(gulp.dest('./www/'));
-
-    gulp
-      .src('./www/**/*.html')
-      .pipe(inject(gulp.src(['./www/**/*.js', '!./www/components/**/*.js'], { read: false }), { relative: true }))
-      .pipe(gulp.dest('./www/'));
-
-    // gulp
-    //   .src('./app/components/**/*')
-    //   .pipe(gulp.dest('./www/bower_components/'));
-  });
-
-  gulp.task('inject', function () {
-    gulp
-      .pipe(inject(gulp.src(['./www/**/*.html'], { read: false })))
+      .pipe(stream(options))
+      .pipe(inject(gulp.src(['!./www/lib/**/*.{js,css}', './www/**/*.{js,css}'], { read: false }), { ignorePath: '/www/' }))
       .pipe(gulp.dest('./www/'));
   });
 
-  gulp.task('default', ['bower', 'styles', 'scripts', 'browser-sync'], function () {
+  gulp.task('clean', function () {
+    del(['./www/']);
+  });
+
+  gulp.task('watch', ['jshint', 'styles', 'wire', 'browser-sync'], function () {
     gulp.watch('app/**/*.scss', ['styles']);
     gulp.watch('app/**/*.js', ['scripts']);
     gulp.watch('app/**/*.html', ['bower']);
     gulp.watch('www/**/*.html', ['bs-reload']);
   });
+
+  gulp.task('default', ['clean', 'watch']);
 
 })();
