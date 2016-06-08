@@ -6,28 +6,32 @@
     <title>My AngularJS & Firebase TODOAPP</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- bower:css -->
-    <!-- endbower -->
-    <!-- inject:css -->
-    <!-- endinject -->
+    <link rel="stylesheet" href="./main.css" media="screen" title="no title" charset="utf-8">
   </head>
-  <body ng-cloak>
-    <ul class="menu">
-      <li><a href="#/home">home</a></li>
-      <li><a href="#/chat">chat</a></li>
-      <li ng-hide="loggedIn"><a href="#/login">login</a></li>
-      <li ng-show="loggedIn"><a href="#/account">account</a></li>
-    </ul>
+  <body ng-cloak ng-app="TodoApp" ng-strict-di>
+    <header>
+      <div id="login">
+        <div id="user-avatar"></div>
 
-    <div ng-view></div>
+        <button type="button" name="button" id="sign-in">Sign in</button>
+        <button type="button" name="button" id="sign-out" hidden>Sign out</button>
+      </div>
+    </header>
 
-    <div>AngularFire-seed v<span app-version></span></div>
+    <div id="todo-tasks">
+      <ul hidden class="tasks"></ul>
+      <div class="empty">No todo tasks yet!</div>
+      <div class="create">
+        <form name="new-todo-task" class="new-item-form">
+          <input class="new-item-input" type="text" name="name" value="">
+        </form>
+      </div>
+    </div>
 
-    <!-- bower:js -->
-    <!-- endbower -->
-
-    <!-- inject:js -->
-    <!-- endinject -->
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script src="./scripts/script.js"></script>
+    <script src="./scripts/firebase.js"></script>
+    <script src="./scripts/login.js"></script>
+    <script src="./scripts/todo-tasks.js"></script>
   </body>
 </html>

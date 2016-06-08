@@ -39,6 +39,7 @@
     "wiredep": "^4.0.0"
   },
   "devDependencies": {
+    "gulp-notify": "^2.2.0",
     "jshint-stylish": "^2.2.0"
   }
 }
