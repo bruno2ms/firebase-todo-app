@@ -54,6 +54,7 @@
   "node": true,
 
   "globals": {
-    "firebase": false
+    "firebase": false,
+    "angular": false
   }
 }

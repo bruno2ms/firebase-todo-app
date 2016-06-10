@@ -59,6 +59,11 @@
       .pipe(jshint.reporter('jshint-stylish', {beep: true}))
       .pipe(gulp.dest('./www/'))
       .pipe(browserSync.reload({ stream:true }));
+
+    gulp
+      .src(['./app/**/*.json'])
+      .pipe(plumber(errorHandler))
+      .pipe(gulp.dest('./www/'));
   });
 
   gulp.task('html', function () {
@@ -74,7 +79,7 @@
   gulp.task('watch', ['jshint', 'styles', 'html', 'images', 'browser-sync'], function () {
     gulp.watch('app/**/*.scss', ['styles']);
     gulp.watch('app/**/*.js', ['jshint']);
-    gulp.watch('app/**/*.html', ['html']);
+    gulp.watch('app/**/*.html', ['html', 'bs-reload']);
     gulp.watch('www/**/*.html', ['bs-reload']);
   });
 

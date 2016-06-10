@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My AngularJS & Firebase TODOAPP</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styles/main.css" media="screen" title="no title" charset="utf-8">
+  </head>
+  <body ng-cloak ng-app="app.core" ng-strict-di>
+    <div ng-controller="MyController as vm">
+      <form name="vm.form">
+        <p>
+          <label>Ticket</label>
+          <input type="number" name="name"
+            ng-model="vm.filter.ticketKey" required>
+          <label>User</label>
+          <input type="number" name="name"
+            ng-model="vm.filter.userKey" required>
+        </p>
+        <button type="submit" ng-click="vm.add(vm.filter)">ok</button>
+      </form>
+
+      <p ng-repeat="item in vm.viewedTickets track by $index">
+        <span ng-bind="item.ticketKey"></span> - <span ng-bind="item.userKey"></span>
+        <a href ng-click="vm.remove($index)">remove</a>
+        <fb-ticket-view ticket-key="item.ticketKey" user-key="item.userKey"></fb-ticket-view>
+      </p>
+
+      <fb-ticket ticket-key="item.ticketKey" user-key="item.userKey"></fb-ticket>
+    </div>
+
+    <!-- AngularJS -->
+    <script type="text/javascript">
+      window._tenant = 'local';
+    </script>
+
+    <script src="http://underscorejs.org/underscore.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.0.3/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/2.0.1/angularfire.min.js"></script>
+    <script src="./scripts/acelerato-app.js"></script>
+
+  </body>
+</html>

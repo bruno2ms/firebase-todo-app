@@ -57,7 +57,11 @@ TodoApp.prototype.displayTodoTask = function (data) {
       li = document.createElement('li');
 
   li.setAttribute('id', data.key);
-  li.innerHTML = `<label><input type="checkbox" name="${data.key}" ${data.complete ? 'checked="checked"' : ''}> ${value.text} ${data.complete}</label>`;
+  li.innerHTML =
+  `<label>
+    <input type="checkbox" name="${data.key}" ${data.complete ? 'checked="checked"' : ''}>
+    ${value.text} ${data.complete}
+  </label>`;
   li.querySelector('input').addEventListener('change', this.updateTask.bind(this));
   this.tasks.appendChild(li);
 };
