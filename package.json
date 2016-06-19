@@ -1,14 +1,13 @@
 {
-  "name": "firebase-todo-app",
+  "name": "prototype-study",
   "version": "1.0.0",
-  "description": "Just another simple Firebase Angular Todo App",
-  "main": "index.js",
+  "description": "Just a js prototype study",
   "scripts": {
     "postinstall": "bower install"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bruno2ms/firebase-todo-app.git"
+    "url": "git+https://github.com/bruno2ms/prototype-study.git"
   },
   "keywords": [
     "firebase",
@@ -21,10 +20,13 @@
   "bugs": {
     "url": "https://github.com/bruno2ms/firebase-todo-app/issues"
   },
-  "homepage": "https://github.com/bruno2ms/firebase-todo-app#readme",
+  "homepage": "https://github.com/bruno2ms/prototype-study#readme",
   "dependencies": {
+    "body-parser": "^1.15.1",
     "browser-sync": "^2.12.5",
+    "btoa": "^1.1.2",
     "del": "^2.2.0",
+    "express": "^4.14.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-cache": "^0.4.4",
@@ -35,6 +37,7 @@
     "gulp-plumber": "^1.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.3.1",
+    "http-proxy": "^1.14.0",
     "jshint": "^2.9.2",
     "wiredep": "^4.0.0"
   },

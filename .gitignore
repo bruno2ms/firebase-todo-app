@@ -1,2 +1,4 @@
+/.bower-cache/
+/.bower-registry/
 /node_modules/
 /www/
